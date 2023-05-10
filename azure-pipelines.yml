@@ -1,10 +1,5 @@
 trigger:
   branches:
-    exclude:
-      - '*'
-
-pr:
-  branches:
     include:
       - '*'
 
