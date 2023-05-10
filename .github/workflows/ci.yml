@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Linter (ESLint)
+        run: npm run lint
+
+      - name: Formatter (Prettier)
+        run: npm run prettier
+
+      - name: Test (Jest)
+        run: CI=true npm run test
+
+      - name: Build
+        run: npm run build
