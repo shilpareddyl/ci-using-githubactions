@@ -4,18 +4,31 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- main
+  branches:
+    exclude:
+      - '*'
+
+pr:
+  branches:
+    include:
+      - '*'
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+  - script: npm install
+    displayName: 'Install dependencies'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+  - script: npm run lint
+    displayName: 'Linter (ESLint)'
+
+  - script: npm run prettier
+    displayName: 'Formatter (Prettier)'
+
+  - script: CI=true npm run test
+    displayName: 'Test (Jest)'
+
+  - script: npm run build
+    displayName: 'Build'
+
