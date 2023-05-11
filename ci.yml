@@ -19,7 +19,12 @@ jobs:
           node-version: 14
 
       - name: Install dependencies
-        run: npm install
+        run: | 
+         pwd
+         ls -lrt
+         cd codebase/rdicidr-0.1.0/
+         npm install
+        
 
       - name: Linter (ESLint)
         run: npm run lint
