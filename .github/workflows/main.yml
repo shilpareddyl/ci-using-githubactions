@@ -46,6 +46,7 @@ jobs:
       - name: Formatter (Prettier)
         run: |
          cd codebase/rdicidr-0.1.0/src
+         npm install --global prettier
          #npm install --save-dev prettier
          npm run prettier
 
