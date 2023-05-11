@@ -36,11 +36,17 @@ jobs:
         run: |
          cd codebase/rdicidr-0.1.0/
          npm run lint
+         
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.3
+        with:
+          # This part is also where you can pass other options, for example:
+          prettier_options: --write **/*.{js,md}
 
-      - name: Formatter (Prettier)
-        run: |
-         cd codebase/rdicidr-0.1.0/
-         npm run prettier
+      #- name: Formatter (Prettier)
+      #  run: |
+      #   cd codebase/rdicidr-0.1.0/
+       #  npm run prettier
 
       - name: Test (Jest)
         run: |
