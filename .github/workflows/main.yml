@@ -26,8 +26,8 @@ jobs:
          pwd
          ls -lrt
          npm install
-         npm fund
-         npm audit fix --force
+        # npm fund
+        # npm audit fix --force
          
      
         
